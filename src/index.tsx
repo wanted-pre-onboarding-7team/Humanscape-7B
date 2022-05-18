@@ -1,15 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
+import { QueryClientProvider, QueryClient } from 'react-query';
 
 import './styles/index.scss';
+import reportWebVitals from './reportWebVitals';
 
 import Routes from './routes';
+
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { refetchOnMount: false } },
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <Routes />
+    <QueryClientProvider client={queryClient}>
+      <Routes />
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

@@ -47,7 +47,8 @@
 
   .noResult {
     display: block;
-    margin-top: 12px;
+    padding: 6px 8px;
+    margin-top: 6px;
   }
 
   @include responsive.after(SD) {
@@ -79,7 +80,8 @@
     }
 
     .noResult {
-      margin-top: 16px !important;
+      padding: 8px !important;
+      margin-top: 8px !important;
     }
   }
 }
