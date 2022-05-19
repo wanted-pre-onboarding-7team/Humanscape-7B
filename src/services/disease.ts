@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { IDiseaseAPIRes } from 'types/disease.d';
 
-const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+const PROXY = window.location.hostname === 'localhost' ? '' : '/cors-proxy/';
 const BASE_URL = '/B551182/diseaseInfoService/getDissNameCodeList';
 
 interface Params {
@@ -20,8 +20,5 @@ export const getDiseaseNameApi = (params: Params) =>
       diseaseType: 'SICK_NM',
       _type: 'json',
       ...params,
-    },
-    headers: {
-      'Access-Control-Allow-Origin': '*',
     },
   });
