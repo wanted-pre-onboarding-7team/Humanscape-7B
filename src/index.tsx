@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { store } from './states/store';
 import { QueryClientProvider, QueryClient } from 'react-query';
 
-import './styles/index.scss';
 import reportWebVitals from './reportWebVitals';
 
 import Routes from './routes';
+
+import './styles/index.scss';
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnMount: false } },
@@ -15,7 +18,9 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <Routes />
+      <Provider store={store}>
+        <Routes />
+      </Provider>
     </QueryClientProvider>
   </React.StrictMode>
 );

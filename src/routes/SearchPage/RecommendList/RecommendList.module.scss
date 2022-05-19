@@ -24,6 +24,8 @@
     margin-top: 6px;
 
     .recommendItem {
+      border-radius: 8px;
+
       button {
         display: flex;
         align-items: center;
@@ -42,6 +44,15 @@
           white-space: nowrap;
         }
       }
+
+      mark {
+        font-weight: bold;
+        background: none;
+      }
+    }
+
+    .selectedItem {
+      background: colors.$BACKGROUND;
     }
   }
 
@@ -59,23 +70,20 @@
 
     .recommendList {
       margin-top: 8px !important;
-
-      :hover {
-        background: colors.$BACKGROUND;
-      }
     }
 
     .recommendItem {
-      border-radius: 8px;
-
       button {
         padding: 8px !important;
         line-height: 32px !important;
-        border-radius: 8px;
 
         .sickName {
           padding-left: 20px !important;
         }
+      }
+
+      :hover {
+        background: colors.$BACKGROUND;
       }
     }
 

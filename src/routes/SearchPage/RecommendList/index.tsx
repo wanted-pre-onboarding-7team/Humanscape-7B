@@ -1,20 +1,20 @@
-import { SearchIcon } from 'assets/svgs';
 import { IItem } from 'types/disease.d';
 
+import RecommendItem from './Item';
 import Spinner from 'components/Spinner';
 
 import styles from './RecommendList.module.scss';
 
 interface IProps {
-  recommend: IItem[] | undefined;
-  searchValue: string;
+  data: IItem[];
+  debouncedValue: string;
   isLoading: boolean;
 }
 
-const RecommendList = ({ recommend, searchValue, isLoading }: IProps) => {
-  const noResult = !isLoading && !recommend && searchValue;
+const RecommendList = ({ data, debouncedValue, isLoading }: IProps) => {
+  const noResult = !isLoading && !data.length && debouncedValue;
 
-  if (!searchValue) return null;
+  if (!debouncedValue) return null;
 
   return (
     <div className={styles.recommend}>
@@ -22,15 +22,8 @@ const RecommendList = ({ recommend, searchValue, isLoading }: IProps) => {
       {isLoading && <Spinner />}
       {noResult && <span className={styles.noResult}>검색어 없음</span>}
       <ul className={styles.recommendList}>
-        {Array.isArray(recommend) &&
-          recommend.map((item) => (
-            <li key={item.sickCd} className={styles.recommendItem}>
-              <button type='button' name={item.sickNm}>
-                <SearchIcon className={styles.searchIcon} />
-                <span className={styles.sickName}>{item.sickNm}</span>
-              </button>
-            </li>
-          ))}
+        {Array.isArray(data) &&
+          data.map((item, index) => <RecommendItem key={item.sickCd} item={item} index={index} />)}
       </ul>
     </div>
   );
