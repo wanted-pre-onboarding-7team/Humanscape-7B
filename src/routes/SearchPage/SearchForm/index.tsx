@@ -17,35 +17,43 @@ const SearchForm = ({ data }: IProps) => {
   const searchValue = useAppSelector(getSearchValue);
   const searchIndex = useAppSelector(getSearchIndex);
 
-  const [test, setTest] = useState<boolean>();
+  const [isArrowKey, setIsArrowKey] = useState(false);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (test) return;
+    if (isArrowKey) return;
 
     dispatch(searchValueActions.setSearchValue(e.currentTarget.value));
     dispatch(searchIndexActions.resetIndex());
   };
 
   const onKeyDown = (e: KeyboardEvent) => {
+    setIsArrowKey(false);
+
+    if (e.nativeEvent.isComposing) return;
+
     if (e.key === 'ArrowUp') {
       e.preventDefault();
       dispatch(searchIndexActions.decreaseIndex(data.length));
-      setTest(true);
+      setIsArrowKey(true);
     }
+
     if (e.key === 'ArrowDown') {
       dispatch(searchIndexActions.increaseIndex(data.length));
-      setTest(true);
-    }
-    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') {
-      setTest(false);
+      setIsArrowKey(true);
     }
   };
 
-  const selectedValue = searchIndex !== -1 && searchValue && data.length ? data[searchIndex].sickNm : searchValue;
+  const getSelectedValue = () => {
+    if (searchIndex > -1 && data.length) return data[searchIndex].sickNm;
+
+    return searchValue;
+  };
+
+  const selectedValue = getSelectedValue();
 
   return (
     <form className={styles.searchForm} onSubmit={onSubmit}>
