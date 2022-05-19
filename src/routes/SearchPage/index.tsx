@@ -13,13 +13,18 @@ const SearchPage = () => {
   const searchValue = useAppSelector(getSearchValue);
   const debouncedValue = useDebounce(searchValue, 300);
 
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, isError } = useQuery(
     ['getDiseaseNameApi', debouncedValue],
     () =>
       getDiseaseNameApi({ searchText: debouncedValue }).then((res) => {
         // eslint-disable-next-line no-console
         console.count('API 호출');
-        return res.data.response.body.items.item;
+        const { item } = res.data.response.body.items;
+
+        if (!item) return [];
+        if (!Array.isArray(item)) return [item];
+
+        return item;
       }),
     {
       enabled: !!debouncedValue.trim(),
@@ -32,7 +37,7 @@ const SearchPage = () => {
       <h1 className={styles.title}>질환명을 검색해보세요</h1>
       <section className={styles.searchSection}>
         <SearchForm data={data ?? []} />
-        <RecommendList data={data ?? []} debouncedValue={debouncedValue} isLoading={isLoading} />
+        <RecommendList data={data ?? []} debouncedValue={debouncedValue} isLoading={isLoading} isError={isError} />
       </section>
     </main>
   );

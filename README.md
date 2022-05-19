@@ -32,7 +32,6 @@
 
 ## 에러
 
-- [ ] response 값 1개 일 때 객체 타입
 - [x] 키보드 이동시 리스트 이동 두번 실행
   - [x] e.nativeEvent.isComposing
   - [x] 윈도우환경에서 KeyboardEvent.key 값이 다르다 (맥 크롬에서는 같다)
@@ -40,3 +39,8 @@
   - [x] 그래서 두번 실행되는걸 prevent 해준 느낌
 - [x] 키보드 이동 시 인풋 value에 한 음절 붙음
   - [x] 재요청
+- [x] response 값 1개 일 때 객체 타입
+- [x] 요청 에러
+  - [x] 재요청 횟수 3번
+  - [x] 요청 실패시 isError true
+  - [x] 현재 추천 검색어를 가져올 수 없음
