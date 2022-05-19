@@ -26,14 +26,16 @@
     .recommendItem {
       border-radius: 8px;
 
-      button {
+      a {
         display: flex;
         align-items: center;
         width: 100%;
         height: 100%;
         padding: 6px 8px;
         line-height: 30px;
+        color: colors.$TEXT_PRIMARY;
         text-align: left;
+        border-radius: 8px;
 
         .sickName {
           width: 100%;
@@ -73,7 +75,7 @@
     }
 
     .recommendItem {
-      button {
+      a {
         padding: 8px !important;
         line-height: 32px !important;
 

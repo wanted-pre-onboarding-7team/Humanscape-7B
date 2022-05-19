@@ -1,29 +1,30 @@
-import { SearchIcon } from 'assets/svgs';
-import { IItem } from 'types/disease.d';
+import cx from 'classnames';
 
-import { highlightedText } from './utils';
+import { SearchIcon } from 'assets/svgs';
+import { useAppSelector } from 'hooks';
 import { getSearchIndex } from 'states/searchIndex';
 import { getSearchValue } from 'states/searchValue';
 
-import cx from 'classnames';
+import { highlightedText } from './utils';
+import { SEARCH_URL } from '../constants';
+
 import styles from './RecommendList.module.scss';
-import { useAppSelector } from 'hooks';
 
 interface IProps {
-  item: IItem;
+  sickName: string;
   index: number;
 }
 
-const RecommendItem = ({ item, index }: IProps) => {
+const RecommendItem = ({ sickName, index }: IProps) => {
   const selectIndex = useAppSelector(getSearchIndex);
   const searchValue = useAppSelector(getSearchValue);
 
   return (
-    <li key={item.sickCd} className={cx(styles.recommendItem, { [styles.selectedItem]: selectIndex === index })}>
-      <button type='button' name={item.sickNm}>
+    <li className={cx(styles.recommendItem, { [styles.selectedItem]: selectIndex === index })}>
+      <a href={`${SEARCH_URL}${sickName}`}>
         <SearchIcon className={styles.searchIcon} />
-        <span className={styles.sickName}>{highlightedText(item.sickNm, searchValue)}</span>
-      </button>
+        <span className={styles.sickName}>{highlightedText(sickName, searchValue)}</span>
+      </a>
     </li>
   );
 };

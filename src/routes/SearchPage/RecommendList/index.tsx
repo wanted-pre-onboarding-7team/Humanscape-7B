@@ -23,7 +23,7 @@ const RecommendList = ({ data, debouncedValue, isLoading }: IProps) => {
       {noResult && <span className={styles.noResult}>검색어 없음</span>}
       <ul className={styles.recommendList}>
         {Array.isArray(data) &&
-          data.map((item, index) => <RecommendItem key={item.sickCd} item={item} index={index} />)}
+          data.map((item, index) => <RecommendItem key={item.sickCd} sickName={item.sickNm} index={index} />)}
       </ul>
     </div>
   );

@@ -6,6 +6,8 @@ import { searchIndexActions, getSearchIndex } from 'states/searchIndex';
 import { searchValueActions, getSearchValue } from 'states/searchValue';
 import { IItem } from 'types/disease.d';
 
+import { SEARCH_URL } from '../constants';
+
 import styles from './SearchForm.module.scss';
 
 interface IProps {
@@ -19,8 +21,17 @@ const SearchForm = ({ data }: IProps) => {
 
   const [isArrowKey, setIsArrowKey] = useState(false);
 
+  const getSelectedValue = () => {
+    if (searchIndex > -1 && data.length) return data[searchIndex].sickNm;
+
+    return searchValue;
+  };
+
+  const selectedValue = getSelectedValue();
+
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    window.location.href = `${SEARCH_URL}${selectedValue}`;
   };
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -46,14 +57,6 @@ const SearchForm = ({ data }: IProps) => {
       setIsArrowKey(true);
     }
   };
-
-  const getSelectedValue = () => {
-    if (searchIndex > -1 && data.length) return data[searchIndex].sickNm;
-
-    return searchValue;
-  };
-
-  const selectedValue = getSelectedValue();
 
   return (
     <form className={styles.searchForm} onSubmit={onSubmit}>
