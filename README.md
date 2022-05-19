@@ -1,8 +1,12 @@
-# 원티드 프리온보딩 휴먼스케이프 팀과제
+<div align=center>
 
-검색어 추천이 있는 검색창
+![기능](https://user-images.githubusercontent.com/78616893/169333225-3bc95877-e507-45df-afa2-5222808f05f6.gif)
+  
+### 검색어 추천이 있는 검색창
 
-[배포 주소](https://7b.netlify.app/)
+### [배포 주소](https://7b.netlify.app/)
+  
+</div>
 
 <br>
 
