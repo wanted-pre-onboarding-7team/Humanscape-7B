@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { IDiseaseAPIRes } from 'types/disease.d';
 
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 const BASE_URL = '/B551182/diseaseInfoService/getDissNameCodeList';
 
 interface Params {
@@ -9,7 +10,7 @@ interface Params {
 }
 
 export const getDiseaseNameApi = (params: Params) =>
-  axios.get<IDiseaseAPIRes>(`${BASE_URL}`, {
+  axios.get<IDiseaseAPIRes>(`${PROXY}${BASE_URL}`, {
     params: {
       serviceKey: process.env.REACT_APP_API_KEY,
       pageNo: 1,
