@@ -1,0 +1,59 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/responsive';
+
+.searchForm {
+  position: relative;
+  display: flex;
+  width: 95%;
+  height: 50px;
+  margin: 0 auto;
+  background: colors.$BACKGROUND_WHITE;
+  border-radius: 12px;
+  box-shadow: 0 6px 6px colors.$SHADOW;
+
+  .searchInput {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-left: 16px;
+
+    input[type='text'] {
+      width: 100%;
+      height: 100%;
+      padding-left: 10px;
+
+      &::placeholder {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  button {
+    display: none;
+  }
+
+  @include responsive.after(SD) {
+    width: 100%;
+    height: 60px;
+
+    .searchInput {
+      width: 85%;
+      padding-left: 20px;
+
+      input[type='text'] {
+        padding-left: 20px;
+      }
+    }
+
+    button {
+      display: inline-block;
+      width: 15%;
+      height: 100%;
+      font-size: 16px;
+      color: colors.$TEXT_WHITE;
+      background: colors.$BUTTON;
+      border-top-right-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+  }
+}
