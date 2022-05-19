@@ -20,4 +20,7 @@ export const getDiseaseNameApi = (params: Params) =>
       diseaseType: 'SICK_NM',
       ...params,
     },
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });

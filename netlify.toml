@@ -3,3 +3,4 @@
   to = "https://apis.data.go.kr/:splat"
   status = 200
   force = true
+  headers = {X-From = "Netlify"}
