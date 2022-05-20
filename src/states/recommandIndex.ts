@@ -10,11 +10,11 @@ const initialState: INIT_STATE = {
   index: -1,
 };
 
-const searchIndexSlice = createSlice({
-  name: 'searchIndex',
+const recommandIndexSlice = createSlice({
+  name: 'recommandIndex',
   initialState,
   reducers: {
-    setSearchIndex(state: INIT_STATE, action: PayloadAction<number>) {
+    setIndex(state: INIT_STATE, action: PayloadAction<number>) {
       state.index = action.payload;
     },
     increaseIndex(state: INIT_STATE, action: PayloadAction<number>) {
@@ -37,8 +37,8 @@ const searchIndexSlice = createSlice({
   },
 });
 
-export default searchIndexSlice.reducer;
+export default recommandIndexSlice.reducer;
 
-export const searchIndexActions = searchIndexSlice.actions;
+export const recommandIndexActions = recommandIndexSlice.actions;
 
-export const getSearchIndex = (state: RootState) => state.searchIndex.index;
+export const getRecommandIndex = (state: RootState) => state.recommandIndex.index;
