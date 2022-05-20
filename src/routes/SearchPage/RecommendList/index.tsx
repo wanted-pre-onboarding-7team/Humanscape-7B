@@ -1,39 +1,38 @@
+import { useState, useEffect } from 'react';
+
 import { IItem } from 'types/disease.d';
 
 import RecommendItem from './Item';
 import Spinner from 'components/Spinner';
 
 import styles from './RecommendList.module.scss';
-import { useState, useEffect } from 'react';
 
 interface IProps {
   data: IItem[];
-  debouncedValue: string;
   isLoading: boolean;
   isError: boolean;
 }
 
-const RecommendList = ({ data, debouncedValue, isLoading, isError }: IProps) => {
+const RecommendList = ({ data, isLoading, isError }: IProps) => {
   const [errorMessage, setErrorMessage] = useState('');
 
   // refactor
-  const noResult = !isLoading && !data.length && debouncedValue;
-
   useEffect(() => {
     setErrorMessage('');
 
+    if (isLoading || data.length) return;
+
     if (isError) {
       setErrorMessage('현재 추천 검색어를 가져올 수 없음');
-
       return;
     }
 
-    if (noResult) {
-      setErrorMessage('검색어 없음');
-    }
-  }, [isError, noResult]);
+    setErrorMessage('검색어 없음');
+  }, [data.length, isError, isLoading]);
 
-  if (!debouncedValue) return null;
+  const recommandItems = data.map((item: IItem, index: number): JSX.Element => {
+    return <RecommendItem key={item.sickCd} sickName={item.sickNm} index={index} />;
+  });
 
   // refactor
   return (
@@ -41,10 +40,7 @@ const RecommendList = ({ data, debouncedValue, isLoading, isError }: IProps) => 
       <span className={styles.recommendTitle}>추천 검색어</span>
       {isLoading && <Spinner />}
       {errorMessage && <span className={styles.noResult}>{errorMessage}</span>}
-      <ul className={styles.recommendList}>
-        {Array.isArray(data) &&
-          data.map((item, index) => <RecommendItem key={item.sickCd} sickName={item.sickNm} index={index} />)}
-      </ul>
+      <ul className={styles.recommendList}>{recommandItems}</ul>
     </div>
   );
 };

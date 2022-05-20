@@ -39,7 +39,7 @@ const SearchPage = () => {
       <h1 className={styles.title}>질환명을 검색해보세요</h1>
       <section className={styles.searchSection}>
         <SearchForm data={data ?? []} />
-        <RecommendList data={data ?? []} debouncedValue={debouncedValue} isLoading={isLoading} isError={isError} />
+        {debouncedValue && <RecommendList data={data ?? []} isLoading={isLoading} isError={isError} />}
       </section>
     </main>
   );
