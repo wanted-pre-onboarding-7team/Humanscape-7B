@@ -9,15 +9,21 @@ interface Params {
   searchText: string;
 }
 
-export const getDiseaseNameApi = (params: Params) =>
-  axios.get<IDiseaseAPIRes>(`${PROXY}/${BASE_URL}`, {
-    params: {
-      serviceKey: process.env.REACT_APP_API_KEY,
-      pageNo: 1,
-      numOfRows: 10,
-      sickType: 1,
-      medTp: 2,
-      diseaseType: 'SICK_NM',
-      ...params,
-    },
-  });
+export const getDiseaseNameApi = (params: Params) => {
+  try {
+    return axios.get<IDiseaseAPIRes>(`${PROXY}/${BASE_URL}`, {
+      params: {
+        serviceKey: process.env.REACT_APP_API_KEY,
+        pageNo: 1,
+        numOfRows: 10,
+        sickType: 1,
+        medTp: 2,
+        diseaseType: 'SICK_NM',
+        ...params,
+      },
+    });
+  } finally {
+    // eslint-disable-next-line no-console
+    console.count('API 호출');
+  }
+};

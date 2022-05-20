@@ -21,9 +21,6 @@ const SearchPage = () => {
     ['getDiseaseNameApi', debouncedValue],
     () =>
       getDiseaseNameApi({ searchText: debouncedValue }).then((res) => {
-        // eslint-disable-next-line no-console
-        console.count('API 호출');
-
         const { item } = res.data.response.body.items;
 
         if (!item) return [];
