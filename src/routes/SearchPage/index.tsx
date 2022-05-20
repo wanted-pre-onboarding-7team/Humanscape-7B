@@ -19,6 +19,7 @@ const SearchPage = () => {
       getDiseaseNameApi({ searchText: debouncedValue }).then((res) => {
         // eslint-disable-next-line no-console
         console.count('API 호출');
+
         const { item } = res.data.response.body.items;
 
         if (!item) return [];
@@ -32,6 +33,7 @@ const SearchPage = () => {
     }
   );
 
+  // refactor
   return (
     <main className={styles.searchPage}>
       <h1 className={styles.title}>질환명을 검색해보세요</h1>

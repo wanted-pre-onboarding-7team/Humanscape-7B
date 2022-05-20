@@ -21,6 +21,7 @@ const SearchForm = ({ data }: IProps) => {
 
   const [isArrowKey, setIsArrowKey] = useState(false);
 
+  // refactor
   const getSelectedValue = () => {
     if (searchIndex > -1 && data.length) return data[searchIndex].sickNm;
 

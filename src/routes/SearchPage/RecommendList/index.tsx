@@ -16,6 +16,7 @@ interface IProps {
 const RecommendList = ({ data, debouncedValue, isLoading, isError }: IProps) => {
   const [errorMessage, setErrorMessage] = useState('');
 
+  // refactor
   const noResult = !isLoading && !data.length && debouncedValue;
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const RecommendList = ({ data, debouncedValue, isLoading, isError }: IProps) => 
 
   if (!debouncedValue) return null;
 
+  // refactor
   return (
     <div className={styles.recommend}>
       <span className={styles.recommendTitle}>추천 검색어</span>
