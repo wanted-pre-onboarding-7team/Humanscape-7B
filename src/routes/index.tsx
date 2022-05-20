@@ -1,6 +1,6 @@
-import styles from './Routes.module.scss';
-
 import SearchPage from './SearchPage';
+
+import styles from './Routes.module.scss';
 
 const App = () => {
   return (

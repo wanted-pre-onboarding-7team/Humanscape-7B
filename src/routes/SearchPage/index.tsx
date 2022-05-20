@@ -17,8 +17,6 @@ const SearchPage = () => {
     ['getDiseaseNameApi', debouncedValue],
     () =>
       getDiseaseNameApi({ searchText: debouncedValue }).then((res) => {
-        // eslint-disable-next-line no-console
-        console.count('API 호출');
         const { item } = res.data.response.body.items;
 
         if (!item) return [];
@@ -37,7 +35,7 @@ const SearchPage = () => {
       <h1 className={styles.title}>질환명을 검색해보세요</h1>
       <section className={styles.searchSection}>
         <SearchForm data={data ?? []} />
-        <RecommendList data={data ?? []} debouncedValue={debouncedValue} isLoading={isLoading} isError={isError} />
+        <RecommendList data={data ?? []} isLoading={isLoading} isError={isError} debouncedValue={debouncedValue} />
       </section>
     </main>
   );
