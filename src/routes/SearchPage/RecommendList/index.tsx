@@ -11,9 +11,10 @@ interface IProps {
   data: IItem[];
   isLoading: boolean;
   isError: boolean;
+  debouncedValue: string;
 }
 
-const RecommendList = ({ data, isLoading, isError }: IProps) => {
+const RecommendList = ({ data, isLoading, isError, debouncedValue }: IProps) => {
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
@@ -32,6 +33,8 @@ const RecommendList = ({ data, isLoading, isError }: IProps) => {
   const recommendItems = data.map((item: IItem, index: number): JSX.Element => {
     return <RecommendItem key={item.sickCd} sickName={item.sickNm} index={index} />;
   });
+
+  if (!debouncedValue) return null;
 
   return (
     <div className={styles.recommend}>
