@@ -38,6 +38,10 @@ const SearchPage = () => {
   );
 
   useEffect(() => {
+    setReceivedData([]);
+  }, [searchValue]);
+
+  useEffect(() => {
     if (data) setReceivedData(data);
   }, [data]);
 
