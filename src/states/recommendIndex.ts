@@ -14,9 +14,6 @@ const recommendIndexSlice = createSlice({
   name: 'recommendIndex',
   initialState,
   reducers: {
-    setIndex(state: INIT_STATE, action: PayloadAction<number>) {
-      state.index = action.payload;
-    },
     increaseIndex(state: INIT_STATE, action: PayloadAction<number>) {
       if (state.index >= action.payload - 1) {
         state.index = 0;
