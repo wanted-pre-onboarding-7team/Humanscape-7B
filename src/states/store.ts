@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import recommandIndex from './recommandIndex';
+import recommendIndex from './recommendIndex';
 import searchValue from './searchValue';
 
 export const store = configureStore({
   reducer: {
-    recommandIndex,
+    recommendIndex,
     searchValue,
   },
   devTools: process.env.NODE_ENV !== 'production',

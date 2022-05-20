@@ -16,7 +16,6 @@ interface IProps {
 const RecommendList = ({ data, isLoading, isError }: IProps) => {
   const [errorMessage, setErrorMessage] = useState('');
 
-  // refactor
   useEffect(() => {
     setErrorMessage('');
 
@@ -30,17 +29,16 @@ const RecommendList = ({ data, isLoading, isError }: IProps) => {
     setErrorMessage('검색어 없음');
   }, [data.length, isError, isLoading]);
 
-  const recommandItems = data.map((item: IItem, index: number): JSX.Element => {
+  const recommendItems = data.map((item: IItem, index: number): JSX.Element => {
     return <RecommendItem key={item.sickCd} sickName={item.sickNm} index={index} />;
   });
 
-  // refactor
   return (
     <div className={styles.recommend}>
       <span className={styles.recommendTitle}>추천 검색어</span>
       {isLoading && <Spinner />}
       {errorMessage && <span className={styles.noResult}>{errorMessage}</span>}
-      <ul className={styles.recommendList}>{recommandItems}</ul>
+      <ul className={styles.recommendList}>{recommendItems}</ul>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, KeyboardEvent, useState } from 'react';
 
 import { SearchIcon } from 'assets/svgs';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { recommandIndexActions, getRecommandIndex } from 'states/recommandIndex';
+import { recommendIndexActions, getRecommendIndex } from 'states/recommendIndex';
 import { searchValueActions, getSearchValue } from 'states/searchValue';
 import { IItem } from 'types/disease.d';
 
@@ -17,13 +17,12 @@ interface IProps {
 const SearchForm = ({ data }: IProps) => {
   const dispatch = useAppDispatch();
   const searchValue = useAppSelector(getSearchValue);
-  const recommandIndex = useAppSelector(getRecommandIndex);
+  const recommendIndex = useAppSelector(getRecommendIndex);
 
   const [isArrowKey, setIsArrowKey] = useState(false);
 
-  // refactor
   const getSelectedValue = () => {
-    if (recommandIndex > -1 && data.length) return data[recommandIndex].sickNm;
+    if (recommendIndex > -1 && data.length) return data[recommendIndex].sickNm;
 
     return searchValue;
   };
@@ -39,7 +38,7 @@ const SearchForm = ({ data }: IProps) => {
     if (isArrowKey) return;
 
     dispatch(searchValueActions.setSearchValue(e.currentTarget.value));
-    dispatch(recommandIndexActions.resetIndex());
+    dispatch(recommendIndexActions.resetIndex());
   };
 
   const onKeyDown = (e: KeyboardEvent) => {
@@ -49,12 +48,12 @@ const SearchForm = ({ data }: IProps) => {
 
     if (e.key === 'ArrowUp') {
       e.preventDefault();
-      dispatch(recommandIndexActions.decreaseIndex(data.length));
+      dispatch(recommendIndexActions.decreaseIndex(data.length));
       setIsArrowKey(true);
     }
 
     if (e.key === 'ArrowDown') {
-      dispatch(recommandIndexActions.increaseIndex(data.length));
+      dispatch(recommendIndexActions.increaseIndex(data.length));
       setIsArrowKey(true);
     }
   };

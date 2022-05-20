@@ -2,7 +2,7 @@ import cx from 'classnames';
 
 import { SearchIcon } from 'assets/svgs';
 import { useAppSelector } from 'hooks';
-import { getRecommandIndex } from 'states/recommandIndex';
+import { getRecommendIndex } from 'states/recommendIndex';
 import { getSearchValue } from 'states/searchValue';
 
 import { highlightedText } from './utils';
@@ -16,7 +16,7 @@ interface IProps {
 }
 
 const RecommendItem = ({ sickName, index }: IProps) => {
-  const selectIndex = useAppSelector(getRecommandIndex);
+  const selectIndex = useAppSelector(getRecommendIndex);
   const searchValue = useAppSelector(getSearchValue);
 
   return (

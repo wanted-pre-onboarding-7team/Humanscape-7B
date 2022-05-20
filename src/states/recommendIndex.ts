@@ -10,8 +10,8 @@ const initialState: INIT_STATE = {
   index: -1,
 };
 
-const recommandIndexSlice = createSlice({
-  name: 'recommandIndex',
+const recommendIndexSlice = createSlice({
+  name: 'recommendIndex',
   initialState,
   reducers: {
     setIndex(state: INIT_STATE, action: PayloadAction<number>) {
@@ -37,8 +37,8 @@ const recommandIndexSlice = createSlice({
   },
 });
 
-export default recommandIndexSlice.reducer;
+export default recommendIndexSlice.reducer;
 
-export const recommandIndexActions = recommandIndexSlice.actions;
+export const recommendIndexActions = recommendIndexSlice.actions;
 
-export const getRecommandIndex = (state: RootState) => state.recommandIndex.index;
+export const getRecommendIndex = (state: RootState) => state.recommendIndex.index;
