@@ -1,6 +1,5 @@
 [[redirects]]
-  from = "/cors-proxy/*"
+  from = "/proxy/*"
   to = "https://apis.data.go.kr/:splat"
   status = 200
   force = true
-  headers = {Access-Control-Allow-Origin = "*"}
