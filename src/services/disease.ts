@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { IDiseaseAPIRes } from 'types/disease.d';
 
-const PROXY = window.location.hostname === 'localhost' ? '/api' : '/proxy';
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 const BASE_URL = 'B551182/diseaseInfoService/getDissNameCodeList';
 
 interface Params {
